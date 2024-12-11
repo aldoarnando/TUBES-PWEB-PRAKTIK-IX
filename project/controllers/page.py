@@ -1,0 +1,1 @@
+# penghubung models dan view
