@@ -5,7 +5,7 @@ Mengimplementasi konsep dasar web menggunakan framework Flask
 ### Instalasi
 Clone github
 ```shell
-git clone https://github.com/aldoarnando/TUBES-PWEB-PRAKTIK-IX.git
+git clone https://github.com/BimaniSakti/Kuliah-TUBES-PWEB-PRAKTIK-IX.git
 ```
 Instalasi Modul
 ```shell
