@@ -1,1 +1,0 @@
-# berisi logika bisnis sql
