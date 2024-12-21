@@ -11,7 +11,6 @@ load_dotenv()
 app = Flask(__name__)
 
 # mendapatkan nilai dari variabel environment
-app.secret_key = os.environ.get('SECRET_KEY')
 HOST = os.environ.get('HOST')
 PORT = int(os.environ.get('PORT'))
 USER = os.environ.get('USER')
@@ -21,7 +20,22 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{USER}:{PASSWORD}@{HOS
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_RECORD_QUERIES'] = True
 
-
+# membuat db sqlalchemy
 db = SQLAlchemy(app)
+
+# import model database
 from project.models import Users, Diagnosis, BeratBadanUmur, TinggiBadanUmur, IndeksMassaTubuh
+
+# inisialisasi migrate
 migrate = Migrate(app, db)
+
+# routing
+from project.controllers.page import insertData, indexPage
+
+@app.route("/")
+def index():
+    return indexPage()
+
+@app.route("/cekstunt", methods=['GET', 'POST'])
+def cekStunt():
+    return insertData()

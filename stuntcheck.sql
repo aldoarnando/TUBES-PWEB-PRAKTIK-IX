@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 20, 2024 at 04:07 PM
+-- Generation Time: Dec 21, 2024 at 07:18 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.13
 
@@ -36,7 +36,7 @@ CREATE TABLE `alembic_version` (
 --
 
 INSERT INTO `alembic_version` (`version_num`) VALUES
-('97df4454a021');
+('f2db597e4bc4');
 
 -- --------------------------------------------------------
 
@@ -313,11 +313,26 @@ INSERT INTO `berat_badan_umur` (`id`, `jenis_kelamin`, `umur_bulan`, `minus_3_sd
 
 CREATE TABLE `diagnosis` (
   `id` int NOT NULL,
+  `umur_bulan` int NOT NULL,
+  `tinggi_badan` float NOT NULL,
+  `berat_badan` float NOT NULL,
   `hasil_bb_u` varchar(100) NOT NULL,
   `hasil_tb_u` varchar(100) NOT NULL,
   `hasil_imt_u` varchar(100) NOT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `user_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `diagnosis`
+--
+
+INSERT INTO `diagnosis` (`id`, `umur_bulan`, `tinggi_badan`, `berat_badan`, `hasil_bb_u`, `hasil_tb_u`, `hasil_imt_u`, `created_at`, `user_id`) VALUES
+(1, 10, 75, 15, 'Resiko berat badan lebih', 'Normal', 'Obesitas', '2024-12-22 01:51:38', 1),
+(2, 11, 77, 10, 'Berat badan normal', 'Normal', 'Normal', '2024-12-22 01:52:47', 1),
+(3, 15, 81, 14, 'Resiko berat badan lebih', 'Normal', 'Obesitas', '2024-12-22 01:53:42', 2),
+(4, 16, 81, 12, 'Resiko berat badan lebih', 'Normal', 'Beresiko gizi lebih', '2024-12-22 01:54:11', 2),
+(5, 15, 84, 14, 'Resiko berat badan lebih', 'Normal', 'Gizi lebih', '2024-12-22 01:55:02', 3);
 
 -- --------------------------------------------------------
 
@@ -1294,11 +1309,17 @@ INSERT INTO `tinggi_badan_umur` (`id`, `jenis_kelamin`, `umur_bulan`, `minus_3_s
 CREATE TABLE `users` (
   `id` int NOT NULL,
   `nama_lengkap` varchar(255) NOT NULL,
-  `umur_bulan` int NOT NULL,
-  `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL,
-  `tinggi_badan` float NOT NULL,
-  `berat_badan` float NOT NULL
+  `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `nama_lengkap`, `jenis_kelamin`) VALUES
+(1, 'Risang Haryo Pamungkas Bimani Sakti', 'laki-laki'),
+(2, 'Muhammad Adi Prawira', 'laki-laki'),
+(3, 'Wilyam Yazid', 'laki-laki');
 
 --
 -- Indexes for dumped tables
@@ -1355,7 +1376,7 @@ ALTER TABLE `berat_badan_umur`
 -- AUTO_INCREMENT for table `diagnosis`
 --
 ALTER TABLE `diagnosis`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `indeks_massa_tubuh`
@@ -1373,7 +1394,7 @@ ALTER TABLE `tinggi_badan_umur`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

@@ -1,11 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CekStunting -- Deteksi stunting dengan cepat dan akurat</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}
+<title>CekStunting -- Deteksi stunting dengan cepat dan akurat</title>
+{% endblock %}
+
+{% block content %}
+<header>
+    <nav>
+        <h1>Program Stunting</h1>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Beranda</a></li>
+            <li><a href="{{ url_for('cekStunt') }}">Cek Stunting</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+</main>    
+{% endblock %}
