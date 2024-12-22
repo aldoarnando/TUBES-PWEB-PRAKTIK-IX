@@ -7,7 +7,7 @@
 {% block content %}
 <header>
     <nav>
-        <h1>Program Stunting</h1>
+        <h1>StuntChecker</h1>
         <ul>
             <li><a href="{{ url_for('index') }}">Beranda</a></li>
             <li><a href="{{ url_for('cekStunt') }}">Cek Stunting</a></li>
@@ -16,6 +16,21 @@
 </header>
 
 <main>
+    <section>
+        <h2>Selamat Datang di Program Cek Stunting</h2>
+        <p>Menjaga kesehatan anak sejak dini dengan memantau pertumbuhan dan perkembangan anak.</p>
+        <a href="{{ url_for('cekStunt') }}" class="btn-primary">Cek Status Stunting Anak</a>
+    </section>
 
-</main>    
+    <section class="informasi">
+        <h3>Kenapa Memantau Stunting Itu Penting?</h3>
+        <p>Stunting adalah kondisi dimana anak mengalami gangguan tumbuh kembang akibat kekurangan gizi kronis yang
+            berdampak pada pertumbuhan fisik dan mentalnya. Cek status stunting anak Anda untuk memastikan kesehatan yang
+            optimal!</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Program Cek Stunting. Semua hak cipta dilindungi.</p>
+    </footer>
+</main>
 {% endblock %}

@@ -7,7 +7,7 @@
 {% block content %}
 <header>
     <nav>
-        <h1>Program Stunting</h1>
+        <h1>StuntChecker</h1>
         <ul>
             <li><a href="{{ url_for('index') }}">Beranda</a></li>
             <li><a href="{{ url_for('cekStunt') }}">Cek Stunting</a></li>
@@ -24,43 +24,62 @@
 
         <div class="form-container">
             <form method="POST" action="/cekstunt">
-                <!-- Nama Lengkap -->
-                <label for="nama_lengkap">Nama Lengkap:</label>
-                <input type="text" id="nama_lengkap" name="nama_lengkap" required placeholder="Masukkan nama lengkap">
-                <br><br>
-        
-                <!-- Jenis Kelamin -->
+                <!-- nama lengkap -->
+                <label for="nama_lengkap">Nama Lengkap</label>
+                <input type="text" id="nama_lengkap" name="nama_lengkap" required placeholder="Masukkan nama lengkap"><br>
+
+                <!-- jenis kelamin -->
                 <label for="jenis_kelamin">Jenis Kelamin:</label>
                 <select id="jenis_kelamin" name="jenis_kelamin" required>
                     <option value="Laki-laki">Laki-laki</option>
                     <option value="Perempuan">Perempuan</option>
-                </select>
-                <br><br>
+                </select><br>
         
                 <!-- Umur dalam Bulan -->
-                <label for="umur_bulan">Umur (Bulan):</label>
-                <input type="number" id="umur_bulan" name="umur_bulan" required placeholder="Masukkan umur dalam bulan" step="0.01">
-                <br><br>
+                <label for="umur_bulan">Umur (Bulan)</label>
+                <input type="number" id="umur_bulan" name="umur_bulan" required placeholder="Masukkan umur dalam bulan" step="0.01" min="0" max="228"><br>
         
                 <!-- Tinggi Badan -->
-                <label for="tinggi_badan">Tinggi Badan (cm):</label>
-                <input type="number"" id="tinggi_badan" name="tinggi_badan" required placeholder="Masukkan tinggi badan dalam cm" step="0.01">
-                <br><br>
+                <label for="tinggi_badan">Tinggi Badan (cm)</label>
+                <input type="number"" id="tinggi_badan" name="tinggi_badan" required placeholder="Masukkan tinggi badan dalam cm" step="0.01"><br>
         
                 <!-- Berat Badan -->
-                <label for="berat_badan">Berat Badan (kg):</label>
-                <input type="number" id="berat_badan" name="berat_badan" required placeholder="Masukkan berat badan dalam kg" step="0.01">
-                <br><br>
+                <label for="berat_badan">Berat Badan (kg)</label>
+                <input type="number" id="berat_badan" name="berat_badan" required placeholder="Masukkan berat badan dalam kg" step="0.01"><br>
         
                 <!-- Tombol Submit -->
                 <button type="submit">Cek Stunting</button>
             </form>
         </div>
 
+        <!-- hasil stunting -->
+        {% if category_bb_u or category_tb_u or category_imt_u %}
         <div id="result" class="result-container">
             <h3>Hasil Cek Stunting</h3>
-            <p id="status">Silakan masukkan data untuk cek status stunting.</p>
+            <p id="status">
+                {% if category_bb_u %}
+                    <p>Berat badan: {{ category_bb_u }}</p>
+                {% endif %}
+                {% if category_tb_u %}
+                    <p>Hasil stunting: {{ category_tb_u }}</p>
+                {% endif %}
+                {% if category_imt_u %}
+                    <p>Hasil gizi: {{ category_imt_u }}</p>
+                {% endif %}
+            </p>
+            <h3>Rekomendasi</h3>
+            <p><strong>Note:</strong> Rekomendasi ini dibuat oleh AI, jika anak terindikasi stunting segera hubungi dokter</p>
+            <p>
+                {% for answer in ai_answer %}
+                    <p>{{ answer }}</p>
+                {% endfor %}
+            </p>
         </div>
+        {% endif %}
     </section>    
+
+    <footer>
+        <p>&copy; 2024 Program Cek Stunting. Semua hak cipta dilindungi.</p>
+    </footer>
 </main>
 {% endblock %}

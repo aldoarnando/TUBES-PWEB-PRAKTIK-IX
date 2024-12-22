@@ -1,13 +1,21 @@
 # penghubung models dan view
 from flask import render_template, request, redirect, url_for
-from project.utils.calc import zScore, IMTCalc, categoryBBU, categoryTBU, categoryIMTU
+from project.utils.calc import IMTCalc, categoryBBU, categoryTBU, categoryIMTU
 from project.models import Users, Diagnosis, BeratBadanUmur, TinggiBadanUmur, IndeksMassaTubuh
+from project.utils.groq_ai import getAnswerAI
 
 
 def indexPage():
     return render_template('index.html')
 
 def insertData():
+    # inisialisasi hasil diagnosis
+    category_bb_u = None
+    category_tb_u = None
+    category_imt_u = None
+    ai_answer = None
+    
+    # jika form sudah disubmit
     if request.method == 'POST':
         # mengambil input dari user
         complete_name = request.form['nama_lengkap']
@@ -36,5 +44,5 @@ def insertData():
         else:
             new_user = Users.insertUser(complete_name, sex)
         new_diagnoses = Diagnosis.insertDiagnosis(month_age, height, weight, category_bb_u, category_tb_u, category_imt_u, new_user.id)
-        return redirect(url_for('cekStunt'))
-    return render_template('cek_stunt.html')
+        ai_answer = getAnswerAI(month_age, category_bb_u, category_tb_u, category_imt_u)
+    return render_template('cek_stunt.html', category_bb_u=category_bb_u, category_tb_u=category_tb_u, category_imt_u=category_imt_u, ai_answer=ai_answer)

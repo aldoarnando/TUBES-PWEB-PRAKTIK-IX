@@ -22,9 +22,9 @@ def categoryTBU(height:float, minus_3_sd:float, minus_2_sd:float, plus_3_sd:floa
     elif minus_3_sd <= height < minus_2_sd:
         return "Stunting"
     elif minus_2_sd <= height < plus_3_sd:
-        return "Normal"
+        return "Anak normal"
     else:
-        return "Tinggi"
+        return "Anak lebih tinggi daripada anak seusianya"
 
 # kategori indeks massa tubuh berdasarkan umur
 def categoryIMTU(imt:float, minus_3_sd:float, minus_2_sd:float, plus_1_sd:float, plus_2_sd:float, plus_3_sd:float):
@@ -33,10 +33,10 @@ def categoryIMTU(imt:float, minus_3_sd:float, minus_2_sd:float, plus_1_sd:float,
     elif minus_3_sd <= imt < minus_2_sd:
         return "Gizi kurang"
     elif minus_2_sd <= imt < plus_1_sd:
-        return "Normal"
+        return "Anak normal"
     elif plus_1_sd <= imt < plus_2_sd:
         return "Beresiko gizi lebih"
     elif plus_2_sd <= imt < plus_3_sd:
         return "Gizi lebih"
     else:
-        return "Obesitas"
+        return "Anak terindikasi obesitas"
