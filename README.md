@@ -13,6 +13,7 @@ python -m venv venv
 venv\Scripts\activate.bat
 pip install -r requirements.txt
 ```
+
 ### Cara Commit Push dan Branch
 Buat Branch Baru (misal mengerjakan landing page).
 ```shell
@@ -30,3 +31,11 @@ git push -u origin landing-page
 ```
 Note: jangan ngonding di branch main harus buat branch baru terlebih dahulu
 
+### Cara menjalankan program
+import database stuntcheck.sql
+Ubah file .env.example menjadi .env
+Buat GROC_API_KEY di GROC documentation
+Atur GROC_API_KEY di file .env 
+```shell
+flask run
+```
